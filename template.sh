@@ -15,3 +15,7 @@ touch README.md
 
 
 echo "Directory and files created successfully!"
+
+# Set your Git identity (replace with your own name and email)
+git config --global user.name "yagnasri"
+git config --global user.email "yagnapolisetty@gmail.com"

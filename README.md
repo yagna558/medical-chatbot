@@ -1,5 +1,5 @@
 
-# Medical-Chatbot-with-AWS(Free Tier)-LLMs(Mistral)-LangChain-Pinecone-Flask
+# Build-a-Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS
 
 # How to run?
 ### STEPS:

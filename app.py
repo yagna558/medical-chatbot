@@ -6,6 +6,7 @@ from langchain_openai import ChatOpenAI
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
+from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
 from langchain_mistralai import ChatMistralAI
 from src.prompts import *
@@ -47,6 +48,9 @@ chatModel = ChatMistralAI(
     api_key=os.getenv("MISTRAL_API_KEY"),
     temperature=0.2,
 )
+
+# Initialize the buffer memory
+memory = ConversationBufferMemory()
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),

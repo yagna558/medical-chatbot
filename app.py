@@ -1,18 +1,15 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, request
 from langchain_mistralai import ChatMistralAI
 from src.helper import download_hugging_face_embeddings
 from langchain_pinecone import PineconeVectorStore
-from langchain_openai import ChatOpenAI
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
-from langchain_mistralai import ChatMistralAI
 from src.prompts import *
+from src.config import require_env
 import os
-
-from store_index import MISTRAL_API_KEY
 
 
 app = Flask(__name__)
@@ -20,8 +17,8 @@ app = Flask(__name__)
 
 load_dotenv()
 
-PINECONE_API_KEY=os.environ.get('PINECONE_API_KEY')
-MISTRAL_API_KEY=os.environ.get('MISTRAL_API_KEY')
+PINECONE_API_KEY = require_env("PINECONE_API_KEY")
+MISTRAL_API_KEY = require_env("MISTRAL_API_KEY")
 
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["MISTRAL_API_KEY"] = MISTRAL_API_KEY

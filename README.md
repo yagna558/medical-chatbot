@@ -1,5 +1,5 @@
 
-# Medical-Chatbot-with-AWS(Free Tier)-LLMs(Mistral)-LangChain-Pinecone-Flask
+# Medical Chatbot with AWS (Free Tier), LLMs (Mistral), LangChain, Pinecone and Flask
 
 # How to run?
 ### STEPS:
@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ```
 
 
-### Create a `.env` file in the root directory and add your Pinecone & openai credentials as follows:
+### Create a `.env` file in the root directory and add your Pinecone and Mistral API credentials:
 
 ```ini
 PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -41,24 +41,24 @@ python store_index.py
 ```
 
 ```bash
-# Finally run the following command
-python app.py
-```
+## Run the Application
 
-Now,
+First, store the medical PDF embeddings in Pinecone:
+
 ```bash
-open up localhost:
-```
+python store_index.py
 
 
-### Techstack Used:
+### Tech Stack Used:
 
 - Python
-- LangChain
 - Flask
-- GPT
-- Pinecone
-
+- LangChain
+- Mistral AI (LLM)
+- Pinecone (Vector Database)
+- HuggingFace Embeddings
+- AWS Free Tier
+- GitHub Actions (CI/CD)
 
 
 # AWS-CICD-Deployment-with-Github-Actions

@@ -5,7 +5,6 @@ from langchain_pinecone import PineconeVectorStore
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
 from src.prompts import *
 from src.config import require_env
@@ -46,8 +45,7 @@ chatModel = ChatMistralAI(
     temperature=0.2,
 )
 
-# Initialize the buffer memory
-memory = ConversationBufferMemory()
+
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),
@@ -69,12 +67,16 @@ def index():
 @app.route("/get", methods=["GET", "POST"])
 def chat():
     msg = request.form["msg"]
-    input = msg
-    print(input)
-    response = rag_chain.invoke({"input": msg})
-    print("Response : ", response["answer"])
-    return str(response["answer"])
 
+    try:
+        print(msg)
+        response = rag_chain.invoke({"input": msg})
+        print("Response:", response["answer"])
+        return str(response["answer"])
+
+    except Exception as e:
+        print("Error:", e)
+        return "Sorry, the AI service is temporarily busy. Please try again in a few moments."
 
 
 if __name__ == '__main__':
